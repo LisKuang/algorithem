@@ -16,12 +16,20 @@ Git SourceTree Atlassian kuang_lishi@foxmail.com Lis Kuang 12345678
 
 IntelliJ(解密笔记)
 ctrl+alt+s setting 设置manven（勾选always update snapshot） clean->install->刷新/ complier /plugin(lombok)
-project structure 设置项目属性
+project structure 设置项
+目属性
 invalidate caches and restart
 乱码修改点：setting-maven-runner-VM Option 
 idea64.exe.vmoption
 setting-editor-file encoding
 run-edit configurations-{application}-VM options
+
+Idea plugin
+String manipulation
+code glance
+Alibaba Java Coding Guidelines
+Rainbow Brackets
+leetcode editor
 
 ctrl+alt+B implementation
 ctrl+B caller

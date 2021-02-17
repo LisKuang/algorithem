@@ -70,7 +70,7 @@ public class LeetcodeRoundTwo {
                         nums[j] = 0;
                         break;
                     }
-                    nums[j] = nums[j + 1];//cover
+                    nums[j] = nums[j + 1];
                 }
                 count--;
             }
@@ -78,6 +78,9 @@ public class LeetcodeRoundTwo {
         return count;
     }
 
+    /**
+     * 27. 移除元素
+     */
     public int removeElement(int[] nums, int val) {
         if (nums.length == 0) {
             return 0;
