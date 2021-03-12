@@ -1,0 +1,11 @@
+1、什么是RabbitMQ？
+
+2、RabbitMQ有什么优缺点？
+
+3、如何保证RabbitMQ不被重复消费？
+
+4、如何保证RabbitMQ消息的可靠传输？
+
+5、ES的优点
+
+1. 什么是Spring Boot?
