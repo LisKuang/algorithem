@@ -6,23 +6,23 @@ import java.util.concurrent.ThreadPoolExecutor;
 public class PlayingCards {
 
     public static void main(String[] args)  {
-        Card[] cardSerder = CardFactory.create54CardDeck();
-        CardFactory.disorderCards(cardSerder);
-        showCards(cardSerder);
+        Card[] cards = CardFactory.create54CardDeck();
+        disorderCards(cards);
+        showCards(cards);
         //Mutilple thread pool initiate
         ThreadPoolExecutor executor= (ThreadPoolExecutor) Executors.newFixedThreadPool(3);
         Player p1 = new Player("Kristoff");
         Player p2 = new Player("Anna");
         Player p3 = new Player("Elsa");
-        for (int i = 0; i < cardSerder.length; i++) {
+        for (int i = 0; i < cards.length; i++) {
             //Players are ready
             p1.resetStatus();
             p2.resetStatus();
             p3.resetStatus();
             //Sender is sendind cards
-            p1.setCurrentCard(cardSerder[i]);
-            p2.setCurrentCard(cardSerder[++i]);
-            p3.setCurrentCard(cardSerder[++i]);
+            p1.setCurrentCard(cards[i]);
+            p2.setCurrentCard(cards[++i]);
+            p3.setCurrentCard(cards[++i]);
             //Players are counting
             executor.execute(p1);
             executor.execute(p2);
@@ -50,36 +50,46 @@ public class PlayingCards {
         executor.shutdown();
     }
 
-    private static void showCards(Card[] cardSerder) {
+
+    public static void disorderCards(Card[] cards) {
+        for (int i = 0; i < 54; i++) {
+            int index = (int) (Math.random() * (cards.length - 1));
+            Card card = cards[i];
+            cards[i] = cards[index];
+            cards[index] = card;
+        }
+    }
+
+    private static void showCards(Card[] cards) {
         //show cards
-        for (int i = 0; i < cardSerder.length; i++) {
-            System.out.print(cardSerder[i].getName() + " ");
+        for (int i = 0; i < cards.length; i++) {
+            System.out.print(cards[i].getName() + " ");
         }
         System.out.print( " \n");
 
-        int p1=0;
-        for (int i = 0; i < cardSerder.length; i++) {
+        int sumForP1=0;
+        for (int i = 0; i < cards.length; i++) {
             if(i%3==0){
-                p1+=cardSerder[i].getPoint();
-                System.out.print(cardSerder[i].getPoint() + "->"+p1+"  ");
+                sumForP1+=cards[i].getPoint();
+                System.out.print(cards[i].getPoint() + "->"+sumForP1+"  ");
             }
         }
         System.out.print( " \n");
 
-        int p2=0;
-        for (int i = 0; i < cardSerder.length; i++) {
+        int sumForP2=0;
+        for (int i = 0; i < cards.length; i++) {
             if(i%3==1){
-                p2+=cardSerder[i].getPoint();
-                System.out.print(cardSerder[i].getPoint() + "->"+p2+"  ");
+                sumForP2+=cards[i].getPoint();
+                System.out.print(cards[i].getPoint() + "->"+sumForP2+"  ");
             }
         }
         System.out.print( " \n");
 
-        int p3=0;
-        for (int i = 0; i < cardSerder.length; i++) {
+        int sumForP3=0;
+        for (int i = 0; i < cards.length; i++) {
             if(i%3==2){
-                p3+=cardSerder[i].getPoint();
-                System.out.print(cardSerder[i].getPoint() + "->"+p3+"  ");
+                sumForP3+=cards[i].getPoint();
+                System.out.print(cards[i].getPoint() + "->"+sumForP3+"  ");
             }
         }
         System.out.print( " \n");
@@ -217,16 +227,6 @@ class CardFactory {
         cards[++count] = createRedJoke();
         return cards;
     }
-
-    public static void disorderCards(Card[] cards) {
-        for (int i = 0; i < 54; i++) {
-            int index = (int) (Math.random() * (cards.length - 1));
-            Card card = cards[i];
-            cards[i] = cards[index];
-            cards[index] = card;
-        }
-    }
-
 
 }
 
